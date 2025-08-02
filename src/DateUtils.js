@@ -6,6 +6,6 @@ export function formatCloseDates(date) {
   } else if (isTomorrow(date)) {
     return 'Tomorrow';
   } else {
-    return format(date, 'dd/MMM/yy');
+    return format(date, 'd/M');
   }
 }

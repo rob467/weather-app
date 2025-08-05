@@ -6,12 +6,14 @@ import searchWeatherLocation from './SearchLocationComponent.js'
 searchWeatherLocation();
 
 const locationInput = document.querySelector('.search-input');
+const location = encodeURIComponent(locationInput.value.trim());
+
 const locationBtn = document.querySelector('#search-location-btn');
 
 
 locationBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(locationInput.value)
-  getWeatherData(locationInput.value)
-})
-// getWeatherData('madrid');
+  const location = encodeURIComponent(locationInput.value.trim());
+  console.log(location)
+  getWeatherData(location);
+});

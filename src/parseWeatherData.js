@@ -1,30 +1,27 @@
-// Utility functions for reading weather data from visual crossing API
-
-import { formatCloseDates } from './DateUtils.js';
-
-// for a given location (from the weather API), cycle through days array to
-// get key weather data (high/low temp, rain %, weather icon)
-// flexible to allow either day or hours (requires additional input in API search function)
-// Additional optional parameters
+function filterObjkeys(obj, dayKeys, hourKeys) {
+  const filteredObj = {};
+  Object.keys(obj).forEach((key) => {
+    if (Array.isArray(obj[key]) && key === 'hours') {
+      filteredObj[key] = obj[key].map((item) =>
+        typeof item === 'object'
+          ? filterObjkeys(item, hourKeys, hourKeys)
+          : item
+      );
+    } else if (dayKeys.includes(key)) {
+      filteredObj[key] = obj[key];
+    }
+  });
+  return filteredObj;
+}
 
 function parseWeatherData({
-  weatherDaysArray,
-  weatherDataTerms = ['tempmax', 'tempmin', 'precipprob'],
-  noOfDays = 7,
+  weatherDataObj,
+  dayTerms = ['datetime', 'tempmax', 'tempmin', 'icon', 'precipprob', 'hours'],
+  hourTerms = ['datetime', 'temp', 'icon', 'precipprob'],
 }) {
-  if (weatherDataTerms.length !== 0 && weatherDaysArray !== 0) {
-    const processedWeatherData = weatherDaysArray.slice(0, noOfDays)
-    .map((weatherDay) =>
-      Object.keys(weatherDay)
-      .filter(key => weatherDataTerms.includes(key))
-      .reduce((filteredObj, key) => {
-        filteredObj[key] = weatherDay[key];
-        return filteredObj;
-      }, {})
-      );
-      console.log(processedWeatherData)
-    return processedWeatherData;
-  }
+  return weatherDataObj['days'].map((weatherDay) =>
+    filterObjkeys(weatherDay, dayTerms, hourTerms)
+  );
 }
 
 export default parseWeatherData;

@@ -1,4 +1,5 @@
 import parseWeatherData from './parseWeatherData.js';
+import renderWeatherInfo from './RenderWeatherInfo.js';
 
 async function getWeatherData(location, unitGroup = 'metric') {
   const APIKEY = 'HJG7F9DWTSQQ4M9D2YKR9J4NE';
@@ -10,16 +11,11 @@ async function getWeatherData(location, unitGroup = 'metric') {
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    const weatherPromise = response.json();
+    const val = await response.json();
 
-    weatherPromise.then((val) => {
-      console.log(val);
-      console.log(
-        parseWeatherData({
-          weatherDataObj: val,
-        })
-      );
-    });
+    const processedData = parseWeatherData({ weatherDataObj: val })
+    console.log(processedData);
+    renderWeatherInfo(processedData);
   } catch (error) {
     console.error(error.message);
   }

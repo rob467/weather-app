@@ -25,3 +25,14 @@ ul {
   padding: 0px;
 }
 
+.weather-container {
+  display: flex;
+}
+
+.day-container {
+  background-color: aquamarine;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}

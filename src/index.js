@@ -2,6 +2,7 @@ import './styles.css';
 import './reset-styles.css';
 import { getWeatherData } from './WeatherAPIComponent.js';
 import searchWeatherLocation from './SearchLocationComponent.js'
+import renderWeatherInfo from './RenderWeatherInfo.js';
 
 searchWeatherLocation();
 
@@ -14,6 +15,5 @@ const locationBtn = document.querySelector('#search-location-btn');
 locationBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const location = encodeURIComponent(locationInput.value.trim());
-  console.log(location)
   getWeatherData(location);
 });

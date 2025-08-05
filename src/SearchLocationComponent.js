@@ -9,7 +9,7 @@ function searchWeatherLocation() {
     tag: 'input',
     parent: searchDiv,
     props: {
-      placeholder: 'Enter a location & country',
+      placeholder: 'Enter a location',
       type: 'text',
       className: 'search-input',
     },

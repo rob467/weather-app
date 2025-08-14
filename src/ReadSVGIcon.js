@@ -29,7 +29,7 @@ function getSVGMap() {
   return SVGMap;
 }
 
-function renderSVGIcon(iconValue, parentContainer) {
+function renderSVGIcon(iconValue, parentContainer, iconClass = 'svg-icon') {
   const svgFilename = getSVGMap()[iconValue];
   if (!svgFilename) {
     console.error('No SVG found for value', iconValue);
@@ -41,7 +41,7 @@ function renderSVGIcon(iconValue, parentContainer) {
       parent: parentContainer,
       props: {
         src: svgModule.default,
-        className: 'svg-icon',
+        className: iconClass,
       },
     });
   });

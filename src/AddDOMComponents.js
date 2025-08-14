@@ -6,8 +6,19 @@ function createHtmlEl({
   children = [],
   appendOrder = 'normal', // "reverse" to reverse child appending
 } = {}) {
-  const element = document.createElement(tag);
-  Object.assign(element, props);
+  const isSvg = tag.toLowerCase() === 'svg' || tag.toLowerCase() === 'path';
+
+  const element = isSvg
+    ? document.createElementNS('http://www.w3.org/2000/svg', tag)
+    : document.createElement(tag);
+
+  for (const [key, value] of Object.entries(props)) {
+    if (isSvg) {
+      element.setAttribute(key, value)
+    } else {
+      element[key] = value
+    }
+  }
 
   if (textContent) element.textContent = textContent;
 

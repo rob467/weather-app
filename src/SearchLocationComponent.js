@@ -1,4 +1,5 @@
 import { createHtmlEl, createHtmlLabelInput } from './AddDOMComponents.js';
+import searchSvg from './svgs/search-icon.svg'
 
 function searchWeatherLocation() {
   const searchDiv = createHtmlEl({
@@ -15,11 +16,11 @@ function searchWeatherLocation() {
     },
   });
   const searchBtn = createHtmlEl({
-    tag: 'button',
+    tag: 'img',
     parent: searchDiv,
     props: {
-      type: 'button',
-      id: 'search-location-btn',
+      src: searchSvg,
+      id: 'search-location-icon',
     },
     textContent: 'Search',
   });

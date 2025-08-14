@@ -1,9 +1,19 @@
-import { format, isToday, isTomorrow } from 'date-fns';
+import { format, isToday, isThisHour } from 'date-fns';
 
-export default function formatDates(date) {
+function formatDates(date) {
   if (isToday(date)) {
     return 'Today';
   } else {
     return format(date, 'd/M');
   }
 }
+
+function formatHours(hour) {
+  if (isThisHour(hour)) {
+    return 'Now';
+  } else {
+    return format(hour, 'HH:mm');
+  }
+}
+
+export { formatDates, formatHours }

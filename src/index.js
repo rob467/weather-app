@@ -7,9 +7,8 @@ import renderWeatherInfo from './RenderWeatherInfo.js';
 searchWeatherLocation();
 
 const locationInput = document.querySelector('.search-input');
-const location = encodeURIComponent(locationInput.value.trim());
 
-const locationBtn = document.querySelector('#search-location-btn');
+const locationBtn = document.querySelector('#search-location-icon');
 
 
 locationBtn.addEventListener('click', (e) => {
@@ -17,3 +16,10 @@ locationBtn.addEventListener('click', (e) => {
   const location = encodeURIComponent(locationInput.value.trim());
   getWeatherData(location);
 });
+
+locationInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    locationBtn.click();
+  }
+})

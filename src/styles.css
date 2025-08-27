@@ -42,6 +42,7 @@ width: 100%;
 .days-container {
   display: flex;
   justify-content: center;
+  overflow: auto;
 }
 
 .hours-container {
@@ -77,6 +78,7 @@ width: 100%;
   text-align: center;
   border-radius: 10px;
   border: 1px solid black;
+  min-width: 90px;
   padding: 10px;
   margin: 10px;
 }

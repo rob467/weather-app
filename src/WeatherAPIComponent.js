@@ -12,9 +12,7 @@ async function getWeatherData(location, unitGroup = 'metric') {
       throw new Error(`Response status: ${response.status}`);
     }
     const val = await response.json();
-    console.log(val);
     const processedData = parseWeatherData({ weatherDataObj: val });
-    console.log(processedData);
     renderWeatherInfo(processedData.slice(0, 10));
   } catch (error) {
     console.error(error.message);

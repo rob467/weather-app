@@ -1,7 +1,7 @@
 import { createHtmlEl, removeAllChildren } from './AddDOMComponents.js';
 import { formatDates, formatHours } from './DateUtils.js';
 import renderSVGIcon from './ReadSVGIcon.js';
-import { format, isToday, isThisHour, parse } from 'date-fns';
+import { isToday, isThisHour, parse } from 'date-fns';
 
 function getHoursData(daysArray, day) {
   // If today's hourly data, gets weather from the current hour for the next 24 hours,
@@ -21,10 +21,7 @@ function getHoursData(daysArray, day) {
   }
   return hoursData;
 }
-// Loop through given day to get hours data
-// Render temp, precipprop and icon in container
-// For today-tomorrow should show next 24 hours starting from current hour
-// day.forEach(hour =>)
+
 function renderWeatherByHour(hoursData, day) {
   const hoursContainer = document.querySelector('.hours-container');
 
@@ -66,8 +63,6 @@ function renderWeatherInfo(parsedWeatherDataArray) {
   removeAllChildren(daysContainer);
 
   let currentContainer;
-
-  const hoursContainer = document.querySelector('.hours-container');
 
   // 1. Create individual containers for each day
   parsedWeatherDataArray.forEach((day, index) => {
@@ -124,7 +119,6 @@ function renderWeatherInfo(parsedWeatherDataArray) {
       const hoursContainer = document.querySelector('.hours-container');
 
       if (!isToday(day['datetime'])) {
-        console.log(day);
         requestAnimationFrame(() => {
           hoursContainer.scrollLeft =
             (hoursContainer.scrollWidth - hoursContainer.clientWidth) / 2;

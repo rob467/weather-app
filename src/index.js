@@ -1,25 +1,26 @@
 import './styles.css';
 import './reset-styles.css';
 import { getWeatherData } from './WeatherAPIComponent.js';
-import searchWeatherLocation from './SearchLocationComponent.js'
-import renderWeatherInfo from './RenderWeatherInfo.js';
+import searchWeatherLocation from './SearchLocationComponent.js';
 
-searchWeatherLocation();
+function runWeatherApp() {
+  searchWeatherLocation();
+  const locationInput = document.querySelector('.search-input');
 
-const locationInput = document.querySelector('.search-input');
+  const locationBtn = document.querySelector('#search-location-icon');
 
-const locationBtn = document.querySelector('#search-location-icon');
-
-
-locationBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const location = encodeURIComponent(locationInput.value.trim());
-  getWeatherData(location);
-});
-
-locationInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
+  locationBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    locationBtn.click();
-  }
-})
+    const location = encodeURIComponent(locationInput.value.trim());
+    getWeatherData(location);
+  });
+
+  locationInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      locationBtn.click();
+    }
+  });
+}
+
+runWeatherApp();

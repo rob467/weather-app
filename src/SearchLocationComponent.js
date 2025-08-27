@@ -1,12 +1,13 @@
-import { createHtmlEl, createHtmlLabelInput } from './AddDOMComponents.js';
-import searchSvg from './svgs/search-icon.svg'
+import { createHtmlEl } from './AddDOMComponents.js';
+import searchSvg from './svgs/search-icon.svg';
 
 function searchWeatherLocation() {
   const searchDiv = createHtmlEl({
-      parent: document.querySelector('.search-container'),
-      props: { className: 'search-form' },})
+    parent: document.querySelector('.search-container'),
+    props: { className: 'search-form' },
+  });
 
-  const searchLocation = createHtmlEl({
+  createHtmlEl({
     tag: 'input',
     parent: searchDiv,
     props: {
@@ -15,7 +16,7 @@ function searchWeatherLocation() {
       className: 'search-input',
     },
   });
-  const searchBtn = createHtmlEl({
+  createHtmlEl({
     tag: 'img',
     parent: searchDiv,
     props: {

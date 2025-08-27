@@ -51,6 +51,12 @@ function renderWeatherByHour(hoursData, day) {
       textContent: `${Math.round(hour['precipprob'] / 5) * 5} %`,
     });
   });
+
+  if (isToday(day['datetime'])) {
+    requestAnimationFrame(() => {
+      hoursContainer.scrollLeft = 0;
+    });
+  }
 }
 
 // Function for rendering the parsed weather data
@@ -64,7 +70,6 @@ function renderWeatherInfo(parsedWeatherDataArray) {
 
   let currentContainer;
 
-  // 1. Create individual containers for each day
   parsedWeatherDataArray.forEach((day, index) => {
     const dayContainer = createHtmlEl({
       parent: daysContainer,
@@ -72,7 +77,7 @@ function renderWeatherInfo(parsedWeatherDataArray) {
       textContent: formatDates(day['datetime']),
     });
 
-    const tempContainer = createHtmlEl({
+    createHtmlEl({
       parent: dayContainer,
       props: { className: 'temp-container' },
       children: [

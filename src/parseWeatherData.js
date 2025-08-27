@@ -16,7 +16,15 @@ function filterObjkeys(obj, dayKeys, hourKeys) {
 
 function parseWeatherData({
   weatherDataObj,
-  dayTerms = ['datetime', 'datetimeEpoch', 'tempmax', 'tempmin', 'icon', 'precipprob', 'hours'],
+  dayTerms = [
+    'datetime',
+    'datetimeEpoch',
+    'tempmax',
+    'tempmin',
+    'icon',
+    'precipprob',
+    'hours',
+  ],
   hourTerms = ['datetime', 'datetimeEpoch', 'temp', 'icon', 'precipprob'],
 }) {
   return weatherDataObj['days'].map((weatherDay) =>
